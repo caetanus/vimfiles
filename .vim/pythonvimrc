@@ -1,3 +1,4 @@
 filetype plugin on
 set ofu=pythoncomplete#Complete 
 
+source ~/.vim/ftplugin/python_fn.vim

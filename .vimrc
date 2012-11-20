@@ -24,11 +24,11 @@ set softtabstop=4
 set autoindent
 
 " Paste functions
-imap <S-I> <ESC> :set paste <CR> "*p <CR> :set nopaste <CR> i
-nmap <S-I> <ESC> :set paste <CR> "*p <CR> :set nopaste <CR> i
-vmap <C-I> "+y
-vmap <C-D> "+y <CR> d
-nmap <C-D> "+yy <CR> dd
+imap <S-Insert> <ESC> :set paste <CR> "*p <CR> :set nopaste <CR> i
+nmap <S-Insert> <ESC> :set paste <CR> "*p <CR> :set nopaste <CR> i
+vmap <C-Insert> "+y
+vmap <C-Delete> "+y <CR> d
+nmap <C-Delete> "+yy <CR> dd
 " autosave when changing buffer
 imap <S-END> <ESC> V <END>
 set autowrite

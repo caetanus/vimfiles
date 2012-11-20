@@ -15,12 +15,13 @@ map <C-F7> :update <CR> :e ++ff=dos <CR> :setlocal ff=unix <CR> :w
 map <C-w> :tabclose<CR>
 
 " colorscheme
-colorscheme desert
+colorscheme desert 
 " show linenumbers
 set smarttab
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set backspace=indent,eol,start
 set autoindent
 
 " Paste functions

@@ -1,0 +1,3 @@
+filetype plugin on
+set ofu=pythoncomplete#Complete 
+

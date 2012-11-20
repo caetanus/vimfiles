@@ -55,3 +55,5 @@ nnoremap <A-PageUp> <Esc>:tabnext<CR>
 nnoremap <C-t> <Esc>:tabnew<CR>
 nnoremap <C-PageDown> <Esc>:tabprevious<CR>
 
+set mouse=a
+au Filetype python source ~/.vim/pythonvimrc

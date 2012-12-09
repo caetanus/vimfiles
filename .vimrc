@@ -25,10 +25,10 @@ set backspace=indent,eol,start
 set autoindent
 
 " Paste functions
-imap <S-Insert> <ESC> :set paste <CR> "*p <CR> :set nopaste <CR> i
-nmap <S-Insert> <ESC> :set paste <CR> "*p <CR> :set nopaste <CR> i
+imap <S-Insert> <ESC> :set paste <CR> "+gP <CR> :set nopaste <CR> i
+nmap <S-Insert> <ESC> :set paste <CR> "+gP <CR> :set nopaste <CR> i
 vmap <C-Insert> "+y
-vmap <C-Delete> "+y <CR> d
+vmap <C-Delete> "+x
 nmap <C-Delete> "+yy <CR> dd
 " autosave when changing buffer
 imap <S-END> <ESC> V <END>
@@ -58,3 +58,7 @@ nnoremap <C-PageDown> <Esc>:tabprevious<CR>
 
 set mouse=a
 au Filetype python source ~/.vim/pythonvimrc
+
+
+" scrollbar configurations
+

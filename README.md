@@ -7,6 +7,9 @@ to take full advantage of this, make sure that exuberant-ctags are instaled.
 
 commands:
 ---------
+### Symbol Navigation:
+
+F9 to open/close the symbol navigator
 
 ### completion
 

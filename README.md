@@ -19,8 +19,8 @@ read this tutorials:
 
 
 
-Instaling:
-----------
+Installing:
+-----------
 
 clone this repository to your home, then:
 

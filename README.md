@@ -5,6 +5,13 @@ I most use this files to python editing.
 
 to take full advantage of this, make sure that exuberant-ctags are instaled.
 
+Instaling:
+----------
+
+clone this repository to your home, then:
+
+ln -s ~/vimfiles/.vim  ~ && ln -s ~/vimfiles/.vimrc ~ 
+
 commands:
 ---------
 ### Symbol Navigation:

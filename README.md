@@ -64,3 +64,9 @@ ipd Tab -> import ipdb; ipdb.set_trace()
 \#! Tab -> inserts a shebang
 
 \#*- Tab -> inserts # -*- conding: utf-8 -*-
+
+ifmain Tab -> insert if __name__ == '__main__': ...
+
+cls Tab -> class skeleton
+
+def Tab -> def skeleton

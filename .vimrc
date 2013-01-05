@@ -13,6 +13,9 @@ map <C-s> :w<CR>
 imap <C-s> <Esc> :w<CR>i
 map <C-F7> :update <CR> :e ++ff=dos <CR> :setlocal ff=unix <CR> :w
 map <C-w> :tabclose<CR>
+map <F9> :TlistToggle <CR>
+imap <F9> <Esc> :TlistToggle <CR> i
+vmap <F9> <Esc> :TlistToggle <CR> v
 
 " colorscheme
 colorscheme desert 
@@ -60,5 +63,19 @@ set mouse=a
 au Filetype python source ~/.vim/pythonvimrc
 
 
-" scrollbar configurations
+" -------------------------------------------------------------
+" splits
+
+"window
+nmap <leader>sw<left>  :topleft  vnew<CR>
+nmap <leader>sw<right> :botright vnew<CR>
+nmap <leader>sw<up>    :topleft  new<CR>
+nmap <leader>sw<down>  :botright new<CR>
+
+"navigate into splits
+nmap <leader>s<left>   :wincmd h<CR>
+nmap <leader>s<right>  :wincmd l<CR>
+nmap <leader>s<up>     :wincmd k<CR>
+nmap <leader>s<down>   :wincmd j<CR>
+
 

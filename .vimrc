@@ -83,3 +83,5 @@ nmap <leader>s<up>     :wincmd k<CR>
 nmap <leader>s<down>   :wincmd j<CR>
 
 
+" xml auto indentation
+au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"

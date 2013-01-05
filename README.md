@@ -11,11 +11,11 @@ New to Vim?
 
 read this tutorials: 
 
-(Vim Básico - Aurelio)[http://aurelio.net/vim/vim-basico.txt]
+[Vim Básico - Aurelio](http://aurelio.net/vim/vim-basico.txt)
 
-(Vim Intermediário - Aurelio)[http://aurelio.net/vim/vim-medio.txt]
+[Vim Intermediário - Aurelio](http://aurelio.net/vim/vim-medio.txt)
 
-(Vim Avançado - Aurelio)[http://aurelio.net/vim/vim-avancado.txt]
+[Vim Avançado - Aurelio](http://aurelio.net/vim/vim-avancado.txt)
 
 
 

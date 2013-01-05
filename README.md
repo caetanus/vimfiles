@@ -5,6 +5,20 @@ I most use this files to python editing.
 
 to take full advantage of this, make sure that exuberant-ctags are instaled.
 
+
+New to Vim?
+-----------
+
+read this tutorials: 
+
+(Vim Básico - Aurelio)[http://aurelio.net/vim/vim-basico.txt]
+
+(Vim Intermediário - Aurelio)[http://aurelio.net/vim/vim-medio.txt]
+
+(Vim Avançado - Aurelio)[http://aurelio.net/vim/vim-avancado.txt]
+
+
+
 Instaling:
 ----------
 

@@ -9,6 +9,10 @@ noremap <S-Insert> "+gP<CR>
 " Cut
 noremap <C-Delete> "+x<CR>
 
+map <F9> :TlistToggle<CR>
+imap <F9> <Esc> :TlistToggle <CR><ESC> i
+vmap <F9> <Esc> :TlistToggle <CR> <ESC> v
+
 map <C-s> :w<CR>
 imap <C-s> <Esc> :w<CR>i
 map <C-F7> :update <CR> :e ++ff=dos <CR> :setlocal ff=unix <CR> :w

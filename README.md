@@ -57,3 +57,8 @@ if you have xmllint instaled, any xml file will be indented when oppened.
 
 \s <left> -> moves to the split at left (the same to the others navigation keys)
 
+## snippets
+
+ipd<tab> -> import ipdb; ipdb.set_trace()
+\#!<tab> -> inserts a shebang
+\#*-<tab> -> inserts # -*- conding: utf-8 -*-

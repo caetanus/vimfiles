@@ -40,6 +40,9 @@ ctrl-f7 -> converts dos to unix line ending.
 
 if you have xmllint instaled, any xml file will be indented when oppened.
 
+
+## splits
+
 \sw <left> -> creates a split to left (the same to the others navigation keys)
 
 \s <left> -> moves to the split at left (the same to the others navigation keys)

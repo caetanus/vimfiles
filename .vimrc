@@ -1,5 +1,5 @@
 nnoremap <leader>:call TrimWhiteSpace()<cr>:let @/=''<CR>
-
+noremap <F3> :let @/=''<CR>
 " Copy
 noremap <C-Insert> "+y<CR>
 
@@ -22,7 +22,7 @@ imap <F9> <Esc> :TlistToggle <CR> i
 vmap <F9> <Esc> :TlistToggle <CR> v
 
 " colorscheme
-colorscheme desert 
+colorscheme xoria256
 " show linenumbers
 set smarttab
 set expandtab
@@ -63,6 +63,10 @@ nnoremap <A-PageUp> <Esc>:tabnext<CR>
 nnoremap <C-t> <Esc>:tabnew<CR>
 nnoremap <C-PageDown> <Esc>:tabprevious<CR>
 
+" buffer navigating
+nnoremap <C-S-Left> <Esc>:bp<CR>
+nnoremap <C-S-Right> <Esc>:bn<CR>
+
 set mouse=a
 au Filetype python source ~/.vim/pythonvimrc
 
@@ -87,4 +91,8 @@ au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
 " 80 characters line
 let &colorcolumn=join(range(81,999),",")
-hi ColorColumn guibg=#2d2d2d ctermbg=246
+hi ColorColumn guibg=#2d2d2d ctermbg=235
+
+
+" vsplit style
+set fillchars=vert:\│

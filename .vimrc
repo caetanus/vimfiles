@@ -83,3 +83,8 @@ nmap <leader>s<down>   :wincmd j<CR>
 
 " xml auto indentation
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+
+
+" 80 characters line
+let &colorcolumn=join(range(81,999),",")
+hi ColorColumn guibg=#2d2d2d ctermbg=246

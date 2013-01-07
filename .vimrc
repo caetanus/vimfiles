@@ -9,10 +9,17 @@ noremap <S-Insert> "+gP<CR>
 " Cut
 noremap <C-Delete> "+x<CR>
 
+map <F9> :TlistToggle<CR>
+imap <F9> <Esc> :TlistToggle <CR><ESC> i
+vmap <F9> <Esc> :TlistToggle <CR> <ESC> v
+
 map <C-s> :w<CR>
 imap <C-s> <Esc> :w<CR>i
 map <C-F7> :update <CR> :e ++ff=dos <CR> :setlocal ff=unix <CR> :w
 map <C-w> :tabclose<CR>
+map <F9> :TlistToggle <CR>
+imap <F9> <Esc> :TlistToggle <CR> i
+vmap <F9> <Esc> :TlistToggle <CR> v
 
 " colorscheme
 colorscheme desert 
@@ -59,17 +66,20 @@ nnoremap <C-PageDown> <Esc>:tabprevious<CR>
 set mouse=a
 au Filetype python source ~/.vim/pythonvimrc
 
-" Splits
+" -------------------------------------------------------------
+" splits
 
-nmap <leader>sw<left> :topleft vnew<CR>:e 
-nmap <leader>sw<right> :botright vnew<CR>:e 
-nmap <leader>sw<up> :topleft new<CR>:e 
-nmap <leader>sw<down> :botright new<CR>:e 
+"window
+nmap <leader>sw<left>  :topleft  vnew<CR>
+nmap <leader>sw<right> :botright vnew<CR>
+nmap <leader>sw<up>    :topleft  new<CR>
+nmap <leader>sw<down>  :botright new<CR>
 
-" splits navigation
+"navigate into splits
+nmap <leader>s<left>   :wincmd h<CR>
+nmap <leader>s<right>  :wincmd l<CR>
+nmap <leader>s<up>     :wincmd k<CR>
+nmap <leader>s<down>   :wincmd j<CR>
 
-nmap <leader>s<up> :wincmd k<cr>
-nmap <leader>s<down> :wincmd j<cr>
-nmap <leader>s<left> :wincmd h<cr>
-nmap <leader>s<right> :wincmd l <cr>
-
+" xml auto indentation
+au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"

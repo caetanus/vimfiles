@@ -1,8 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/caetano/prj/tcf-experiments/tcf-ui/script'
 let g:netrw_dirhist_2='/home/caetano/prj/tcf-engine/engine/models'
 let g:netrw_dirhist_3='/home/caetano/prj/tcf-engine/engine'
 let g:netrw_dirhist_4='/home/caetano/powerline-bash'
 let g:netrw_dirhist_5='/home/caetano/prj/tcf-engine/twisted_impl'
 let g:netrw_dirhist_6='/home/caetano/.dosbox'
+let g:netrw_dirhist_7='/home/caetano/prj/gtk-animation-framework'
+let g:netrw_dirhist_8='/etc/apt/preferences.d'
+let g:netrw_dirhist_9='/etc/apt'

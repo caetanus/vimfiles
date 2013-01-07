@@ -96,3 +96,6 @@ hi ColorColumn guibg=#2d2d2d ctermbg=235
 
 " vsplit style
 set fillchars=vert:\│
+
+" no wraplines
+set nowrap

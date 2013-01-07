@@ -59,6 +59,17 @@ nnoremap <C-PageDown> <Esc>:tabprevious<CR>
 set mouse=a
 au Filetype python source ~/.vim/pythonvimrc
 
+" Splits
 
-" scrollbar configurations
+nmap <leader>sw<left> :topleft vnew<CR>:e 
+nmap <leader>sw<right> :botright vnew<CR>:e 
+nmap <leader>sw<up> :topleft new<CR>:e 
+nmap <leader>sw<down> :botright new<CR>:e 
+
+" splits navigation
+
+nmap <leader>s<up> :wincmd k<cr>
+nmap <leader>s<down> :wincmd j<cr>
+nmap <leader>s<left> :wincmd h<cr>
+nmap <leader>s<right> :wincmd l <cr>
 

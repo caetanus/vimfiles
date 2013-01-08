@@ -106,5 +106,8 @@ set nowrap
 
 " NERDTree
 let g:NERDTreeWinPos = "right"
-noremap <F10> NERDTreeToggle
+imap <F12> <ESC> :NERDTreeToggle <CR> i
+map <F12> :NERDTreeToggle <CR>
+vmap <F12> <ESC> :NERDTreeToggle <CR> v
+
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

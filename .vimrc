@@ -93,9 +93,18 @@ au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 let &colorcolumn=join(range(81,999),",")
 hi ColorColumn guibg=#2d2d2d ctermbg=235
 
+" highlight current line
+set cursorline
+
 
 " vsplit style
 set fillchars=vert:\│
 
 " no wraplines
 set nowrap
+
+
+" NERDTree
+let g:NERDTreeWinPos = "right"
+noremap <F10> NERDTreeToggle
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

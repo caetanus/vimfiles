@@ -111,3 +111,5 @@ map <F12> :NERDTreeToggle <CR>
 vmap <F12> <ESC> :NERDTreeToggle <CR> v
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+au BufRead,BufNewFile *.vala,*.vapi setfiletype vala

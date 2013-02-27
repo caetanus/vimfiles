@@ -8,7 +8,8 @@ noremap <S-Insert> "+gP<CR>
 
 " Cut
 noremap <C-Delete> "+x<CR>
-
+" reload current file
+map <C-F5> :edit! <CR>
 map <F9> :TlistToggle<CR>
 imap <F9> <Esc> :TlistToggle <CR><ESC> i
 vmap <F9> <Esc> :TlistToggle <CR> <ESC> v
@@ -111,6 +112,7 @@ map <F12> :NERDTreeToggle <CR>
 vmap <F12> <ESC> :NERDTreeToggle <CR> v
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
 au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
 autocmd BufWritePre *.py :%s/\s\+$//e

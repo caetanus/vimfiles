@@ -4,8 +4,14 @@ snippet #-*
 snippet #!
 	#!/usr/bin/env python
 
+snippet @ski
+	@unittest.skip
 snippet ipd
 	import ipdb; ipdb.set_trace()
+
+snippet testc
+	from unittest import TestCase
+	import unittest
 
 snippet imp
 	import ${1:module}
@@ -30,6 +36,16 @@ snippet cl
 			${5:super($1, self).__init__()}
 			self.$4 = $4
 			${6}
+
+# New Test Class
+snippet clt
+	class ${1:ClassName}Testcase(${2:TestCase}):
+		def setUp(self):
+		    pass
+		
+		def tearDown(self):
+		    pass
+
 # New Function
 snippet def
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):

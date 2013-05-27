@@ -36,6 +36,7 @@ set autoindent
 imap <S-Insert> <ESC> :set paste <CR> "+gP <CR> :set nopaste <CR> i
 nmap <S-Insert> <ESC> :set paste <CR> "+gP <CR> :set nopaste <CR> i
 vmap <C-Insert> "+y
+vmap <C-p> "+y
 vmap <C-Delete> "+x
 nmap <C-Delete> "+yy <CR> dd
 " autosave when changing buffer
@@ -79,8 +80,9 @@ nmap <leader>sw<left>  :topleft  vnew<CR>
 nmap <leader>sw<right> :botright vnew<CR>
 nmap <leader>sw<up>    :topleft  new<CR>
 nmap <leader>sw<down>  :botright new<CR>
-
+map <leader>w :w <CR>
 "navigate into splits
+
 nmap <leader>s<left>   :wincmd h<CR>
 nmap <leader>s<right>  :wincmd l<CR>
 nmap <leader>s<up>     :wincmd k<CR>

@@ -2,12 +2,18 @@ nnoremap <leader>:call TrimWhiteSpace()<cr>:let @/=''<CR>
 noremap <F3> :let @/=''<CR>
 " Copy
 noremap <C-Insert> "+y<CR>
+nmap <leader>y "+2yy<CR>
+vmap <leader>y "+2yy<CR>
 
 " Paste
 noremap <S-Insert> "+gP<CR>
+nmap <leader>p "+p
+vmap <leader>p "+p
 
 " Cut
 noremap <C-Delete> "+x<CR>
+nmap <leader>d "+dd
+vmap <leader>d "+dd
 " reload current file
 map <C-F5> :edit! <CR>
 map <F9> :TlistToggle<CR>
@@ -118,3 +124,5 @@ autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
 au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
 autocmd BufWritePre *.py :%s/\s\+$//e
+
+au BufNew,BufRead *.pi                  setf python

@@ -1,5 +1,17 @@
-nnoremap <leader>:call TrimWhiteSpace()<cr>:let @/=''<CR>
 noremap <F3> :let @/=''<CR>
+
+" Fast close
+
+map <C-Q> :q <CR>
+imap <C-Q> <ESC> :q<CR> i
+vmap <C-Q> <ESC> :q<CR> v
+
+" Fuzzy Finder
+
+map <C-K> :FufFile<CR>
+imap <C-K> <ESC>:FufFile<CR> i
+vmap <C-K> <ESC>:FufFile<CR> v
+
 " Copy
 noremap <C-Insert> "+y<CR>
 nmap <leader>y "+2yy<CR>
@@ -23,7 +35,6 @@ vmap <F9> <Esc> :TlistToggle <CR> <ESC> v
 map <C-s> :w<CR>
 imap <C-s> <Esc> :w<CR>i
 map <C-F7> :update <CR> :e ++ff=dos <CR> :setlocal ff=unix <CR> :w
-map <C-w> :tabclose<CR>
 map <F9> :TlistToggle <CR>
 imap <F9> <Esc> :TlistToggle <CR> i
 vmap <F9> <Esc> :TlistToggle <CR> v
@@ -62,7 +73,23 @@ set history=1000
 
 set ls=2
 set title
-set nu
+
+" relative line numbers
+:au FocusLost * :set nu
+:au FocusGained * : set rnu
+autocmd InsertEnter * :set number
+
+
+function! NumberToggle()
+    if(&relativenumber == 1)
+        set nu
+    else
+        set rnu
+    endif
+endfunc
+
+nnoremap <C-F12> :call NumberToggle() <cr>
+
 
 set ttyfast
 
@@ -126,3 +153,41 @@ au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
 autocmd BufWritePre *.py :%s/\s\+$//e
 
 au BufNew,BufRead *.pi                  setf python
+
+" Vundle setup!
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" My bundles here:
+"
+" original repos on GitHub
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non-GitHub repos
+Bundle 'git://git.wincent.com/command-t.git'
+" Git repos on your local machine (i.e. when working on your own plugin)
+Bundle 'git@github.com:Lokaltog/vim-powerline.git'
+
+Bundle 'git@github.com:tomasr/molokai.git'
+
+filetype plugin indent on     " required!
+
+
+" powerline vim
+"
+colorscheme molokai
+let g:Powerline_symbols = 'fancy'
+
+let g:rehash256 = 1

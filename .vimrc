@@ -3,6 +3,7 @@ noremap <F3> :let @/=''<CR>
 " Fast close
 
 map <C-Q> :q <CR>
+nnoremap <C-Q> :q <CR>
 imap <C-Q> <ESC> :q<CR> i
 vmap <C-Q> <ESC> :q<CR> v
 
@@ -77,8 +78,6 @@ set title
 " relative line numbers
 :au FocusLost * :set nu
 :au FocusGained * : set rnu
-autocmd InsertEnter * :set number
-
 
 function! NumberToggle()
     if(&relativenumber == 1)
@@ -89,6 +88,7 @@ function! NumberToggle()
 endfunc
 
 nnoremap <C-F12> :call NumberToggle() <cr>
+map <C-F12> :call NumberToggle() <cr>
 
 
 set ttyfast

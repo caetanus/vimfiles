@@ -9,9 +9,9 @@ vmap <C-Q> <ESC> :q<CR> v
 
 " Fuzzy Finder
 
-map <C-K> :FufFile<CR>
-imap <C-K> <ESC>:FufFile<CR> i
-vmap <C-K> <ESC>:FufFile<CR> v
+map <C-K> :CtrlP<CR>
+imap <C-K> <ESC>:CtrlP<CR> i
+vmap <C-K> <ESC>:CtrlP<CR> v
 
 " Copy
 noremap <C-Insert> "+y<CR>
@@ -40,8 +40,6 @@ map <F9> :TlistToggle <CR>
 imap <F9> <Esc> :TlistToggle <CR> i
 vmap <F9> <Esc> :TlistToggle <CR> v
 
-" colorscheme
-colorscheme xoria256
 " show linenumbers
 set smarttab
 set expandtab
@@ -89,14 +87,17 @@ endfunc
 
 nnoremap <C-F12> :call NumberToggle() <cr>
 map <C-F12> :call NumberToggle() <cr>
+set rnu
 
 
 set ttyfast
 
 set tabpagemax=15
 nnoremap <A-PageUp> <Esc>:tabnext<CR>
+nnoremap <C-PageUp> <Esc>:bn<CR>
 nnoremap <C-t> <Esc>:tabnew<CR>
-nnoremap <C-PageDown> <Esc>:tabprevious<CR>
+nnoremap <A-PageDown> <Esc>:tabprevious<CR>
+nnoremap <C-PageDown> <Esc>:bp<CR>
 
 " buffer navigating
 nnoremap <C-S-Left> <Esc>:bp<CR>
@@ -168,10 +169,8 @@ Bundle 'gmarik/vundle'
 " My bundles here:
 "
 " original repos on GitHub
-Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
@@ -181,13 +180,61 @@ Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'git@github.com:Lokaltog/vim-powerline.git'
 
 Bundle 'git@github.com:tomasr/molokai.git'
+Bundle 'git@github.com:tpope/vim-fugitive.git'
+
+Bundle 'git@github.com:kien/ctrlp.vim.git'
+Bundle 'git@github.com:bling/vim-airline.git'
+Bundle 'git@github.com:airblade/vim-gitgutter.git'
+Bundle 'git@github.com:mhinz/vim-signify.git'
+
 
 filetype plugin indent on     " required!
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 
 " powerline vim
 "
+colorscheme xoria256
 colorscheme molokai
-let g:Powerline_symbols = 'fancy'
 
 let g:rehash256 = 1
+
+set wildignore+=*/build/bdist*,*/build/lib.*,*/dist/*,*/docs/*,*.egg-info,*.sw*,*.egg,*.exe,*.pyc,*.pyo,*.pyd,*.dll,*.so
+
+
+" ctags c++
+" configure tags - add additional tags here or comment out not-used ones
+set tags+=~/.vim/tags/stl
+set tags+=~/.vim/tags/qt4
+" build tags of your own project with Ctrl-F12
+map <C-S-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview

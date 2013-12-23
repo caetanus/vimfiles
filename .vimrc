@@ -155,68 +155,17 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 
 au BufNew,BufRead *.pi                  setf python
 
-" Vundle setup!
-set nocompatible              " be iMproved
-filetype off                  " required!
+let g:rehash256 = 1
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" My bundles here:
-"
-" original repos on GitHub
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-" non-GitHub repos
-Bundle 'git://git.wincent.com/command-t.git'
-" Git repos on your local machine (i.e. when working on your own plugin)
-Bundle 'git@github.com:Lokaltog/vim-powerline.git'
-
-Bundle 'git@github.com:tomasr/molokai.git'
-Bundle 'git@github.com:tpope/vim-fugitive.git'
-
-Bundle 'git@github.com:kien/ctrlp.vim.git'
-Bundle 'git@github.com:bling/vim-airline.git'
-Bundle 'git@github.com:airblade/vim-gitgutter.git'
-Bundle 'git@github.com:mhinz/vim-signify.git'
-
-
-filetype plugin indent on     " required!
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
+set wildignore+=*/build/bdist*,*/build/lib.*,*/dist/*,*/docs/*,*.egg-info,*.sw*,*.egg,*.exe,*.pyc,*.pyo,*.pyd,*.dll,*.so
+source ~/.vim/vundles.vim
+syn on
+"source ~/.vim/python-mode.vim
 
 " powerline vim
 "
 colorscheme xoria256
 colorscheme molokai
-
-let g:rehash256 = 1
-
-set wildignore+=*/build/bdist*,*/build/lib.*,*/dist/*,*/docs/*,*.egg-info,*.sw*,*.egg,*.exe,*.pyc,*.pyo,*.pyd,*.dll,*.so
 
 
 " ctags c++

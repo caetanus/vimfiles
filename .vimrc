@@ -1,4 +1,3 @@
-noremap <F3> :let @/=''<CR>
 
 " Fast close
 
@@ -74,16 +73,26 @@ set ls=2
 set title
 
 " relative line numbers
-:au FocusLost * :set nu
-:au FocusGained * : set rnu
+au InsertEnter * call RelativeNumber()
+au InsertLeave * call NoRelativeNumber()
+
+function! RelativeNumber()
+    set rnu
+endfunc
+
+function! NoRelativeNumber()
+    set norelativenumber
+    set nu
+endfunc
 
 function! NumberToggle()
     if(&relativenumber == 1)
-        set nu
+        call NoRelativeNumber()
     else
-        set rnu
+        call RelativeNumber()
     endif
 endfunc
+
 
 nnoremap <C-F12> :call NumberToggle() <cr>
 map <C-F12> :call NumberToggle() <cr>
@@ -169,6 +178,7 @@ Bundle 'gmarik/vundle'
 " My bundles here:
 "
 " original repos on GitHub
+Bundle 'davidhalter/jedi-vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " vim-scripts repos
@@ -186,6 +196,11 @@ Bundle 'git@github.com:kien/ctrlp.vim.git'
 Bundle 'git@github.com:bling/vim-airline.git'
 Bundle 'git@github.com:airblade/vim-gitgutter.git'
 Bundle 'git@github.com:mhinz/vim-signify.git'
+Bundle 'git@github.com:tell-k/vim-autopep8.git'
+
+" auto pep8
+let g:autopep8_disable_show_diff=1
+"let g:autopep8_ignore="E501"
 
 
 filetype plugin indent on     " required!
@@ -212,7 +227,6 @@ let g:airline_symbols.whitespace = 'Ξ'
 " powerline vim
 "
 colorscheme xoria256
-colorscheme molokai
 
 let g:rehash256 = 1
 
@@ -238,3 +252,4 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
+colorscheme molokai

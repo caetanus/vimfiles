@@ -1,12 +1,3 @@
-noremap <F3> :let @/=''<CR>
-
-" Fast close
-
-map <C-Q> :q <CR>
-nnoremap <C-Q> :q <CR>
-imap <C-Q> <ESC> :q<CR> i
-vmap <C-Q> <ESC> :q<CR> v
-
 " Fuzzy Finder
 
 map <C-K> :CtrlP<CR>
@@ -14,19 +5,16 @@ imap <C-K> <ESC>:CtrlP<CR> i
 vmap <C-K> <ESC>:CtrlP<CR> v
 
 " Copy
-noremap <C-Insert> "+y<CR>
-nmap <leader>y "+2yy<CR>
-vmap <leader>y "+2yy<CR>
+noremap <C-Insert> "+y
+nmap <leader>y "+2yy
+vmap <leader>y "+2yy
 
-" Paste
-noremap <S-Insert> "+gP<CR>
-nmap <leader>p "+p
-vmap <leader>p "+p
 
 " Cut
 noremap <C-Delete> "+x<CR>
 nmap <leader>d "+dd
 vmap <leader>d "+dd
+
 " reload current file
 map <C-F5> :edit! <CR>
 map <F9> :TlistToggle<CR>
@@ -49,8 +37,9 @@ set backspace=indent,eol,start
 set autoindent
 
 " Paste functions
-imap <S-Insert> <ESC> :set paste <CR> "+gP <CR> :set nopaste <CR> i
-nmap <S-Insert> <ESC> :set paste <CR> "+gP <CR> :set nopaste <CR> i
+imap <S-Insert> <ESC> "+gP i
+map <leader>p :set paste <CR> <ESC> "+gP <ESC> :set nopaste
+nmap <S-Insert> <ESC> "+gP <CR> i
 vmap <C-Insert> "+y
 vmap <C-p> "+y
 vmap <C-Delete> "+x
@@ -74,14 +63,23 @@ set ls=2
 set title
 
 " relative line numbers
-:au FocusLost * :set nu
-:au FocusGained * : set rnu
+au InsertEnter * call RelativeNumber()
+au InsertLeave * call NoRelativeNumber()
+
+function! RelativeNumber()
+    set rnu
+endfunc
+
+function! NoRelativeNumber()
+    set norelativenumber
+    set nu
+endfunc
 
 function! NumberToggle()
     if(&relativenumber == 1)
-        set nu
+        call NoRelativeNumber()
     else
-        set rnu
+        call RelativeNumber()
     endif
 endfunc
 
@@ -105,7 +103,7 @@ nnoremap <C-S-Left> <Esc>:bp<CR>
 nnoremap <C-S-Right> <Esc>:bn<CR>
 
 set mouse=a
-au Filetype python source ~/.vim/pythonvimrc
+" au Filetype python source ~/.vim/pythonvimrc
 
 " -------------------------------------------------------------
 " splits
@@ -127,8 +125,8 @@ nmap <leader>s<down>   :wincmd j<CR>
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
 
-" 80 characters line
-let &colorcolumn=join(range(81,999),",")
+" 100 characters line
+let &colorcolumn=join(range(99,999),",")
 hi ColorColumn guibg=#2d2d2d ctermbg=235
 
 " highlight current line
@@ -156,17 +154,79 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 
 au BufNew,BufRead *.pi                  setf python
 
+" Vundle setup!
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Plugin 'gmarik/vundle'
+
+" My bundles here:
+"
+" original repos on GitHub
+Plugin 'davidhalter/jedi-vim'
+" Plugin 'klen/python-mode'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" vim-scripts repos
+
+Plugin 'git@github.com:vim-scripts/L9'
+Plugin 'git@github.com:vim-scripts/taglist.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'git@github.com:vim-scripts/OmniCppComplete'
+
+
+Plugin 'FuzzyFinder'
+" non-GitHub repos
+
+Plugin 'tomasr/molokai.git'
+Plugin 'tpope/vim-fugitive.git'
+
+Plugin 'kien/ctrlp.vim.git'
+Plugin 'rking/ag.vim'
+Plugin 'bling/vim-airline.git'
+Plugin 'airblade/vim-gitgutter.git' " add + or - for lines added or removed when using git
+Plugin 'tell-k/vim-autopep8.git'
+
+Plugin 'burnettk/vim-angular'
+
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+" auto pep8
+let g:autopep8_disable_show_diff=1
+"let g:autopep8_ignore="E501"
+let g:autopep8_max_line_length=99
+
+filetype plugin indent on     " required!
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+
 let g:rehash256 = 1
 
 set wildignore+=*/build/bdist*,*/build/lib.*,*/dist/*,*/docs/*,*.egg-info,*.sw*,*.egg,*.exe,*.pyc,*.pyo,*.pyd,*.dll,*.so
-source ~/.vim/vundles.vim
-syn on
-"source ~/.vim/python-mode.vim
-
-" powerline vim
-"
-colorscheme xoria256
-colorscheme molokai
 
 
 " ctags c++
@@ -189,3 +249,11 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 colorscheme molokai
+
+
+" Jedi settings
+
+imap <C-LeftMouse> <ESC> <LeftMouse> \g i
+nmap <C-LeftMouse> <LeftMouse> \g
+
+let g:jedi#use_tabs_not_buffers=0

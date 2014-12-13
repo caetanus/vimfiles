@@ -174,10 +174,10 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " vim-scripts repos
 
-Plugin 'git@github.com:vim-scripts/L9'
-Plugin 'git@github.com:vim-scripts/taglist.vim'
+Plugin 'vim-scripts/L9'
+Plugin 'vim-scripts/taglist.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'git@github.com:vim-scripts/OmniCppComplete'
+Plugin 'vim-scripts/OmniCppComplete'
 
 
 Plugin 'FuzzyFinder'

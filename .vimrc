@@ -190,7 +190,6 @@ Plugin 'kien/ctrlp.vim.git'
 Plugin 'rking/ag.vim'
 Plugin 'bling/vim-airline.git'
 Plugin 'airblade/vim-gitgutter.git' " add + or - for lines added or removed when using git
-Plugin 'tell-k/vim-autopep8.git'
 
 Plugin 'burnettk/vim-angular'
 
@@ -198,10 +197,18 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
-" auto pep8
-let g:autopep8_disable_show_diff=1
-"let g:autopep8_ignore="E501"
-let g:autopep8_max_line_length=99
+Plugin 'andviro/flake8-vim'
+
+
+
+" pyflakes
+
+let g:PyFlakeDisabledMessages = 'E501'
+
+let g:PyFlakesMaxLineLength = 99
+
+
+nnoremap <silent> <F8> :PyFlakeAuto <CR>
 
 filetype plugin indent on     " required!
 
@@ -257,3 +264,5 @@ imap <C-LeftMouse> <ESC> <LeftMouse> \g i
 nmap <C-LeftMouse> <LeftMouse> \g
 
 let g:jedi#use_tabs_not_buffers=0
+
+noremap <silent> <F3> :let @/="" <CR>

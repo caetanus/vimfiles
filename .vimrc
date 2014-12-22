@@ -207,6 +207,7 @@ let g:PyFlakeDisabledMessages = 'E501'
 
 let g:PyFlakesMaxLineLength = 99
 
+let g:PyFlakeCheckers = 'pep8,mccabe'
 
 nnoremap <silent> <F8> :PyFlakeAuto <CR>
 

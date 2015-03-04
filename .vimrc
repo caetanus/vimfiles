@@ -199,6 +199,10 @@ Plugin 'garbas/vim-snipmate'
 
 Plugin 'andviro/flake8-vim'
 
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'moll/vim-node'
+
+
 
 
 " pyflakes

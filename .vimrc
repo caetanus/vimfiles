@@ -1,208 +1,143 @@
-" Fuzzy Finder
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-map <C-K> :CtrlP<CR>
-imap <C-K> <ESC>:CtrlP<CR> i
-vmap <C-K> <ESC>:CtrlP<CR> v
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" Copy
-noremap <C-Insert> "+y
-nmap <leader>y "+2yy
-vmap <leader>y "+2yy
-
-
-" Cut
-noremap <C-Delete> "+x<CR>
-nmap <leader>d "+dd
-vmap <leader>d "+dd
-
-" reload current file
-map <C-F5> :edit! <CR>
-map <F9> :TlistToggle<CR>
-imap <F9> <Esc> :TlistToggle <CR><ESC> i
-vmap <F9> <Esc> :TlistToggle <CR> <ESC> v
-
-map <C-s> :w<CR>
-imap <C-s> <Esc> :w<CR>i
-map <C-F7> :update <CR> :e ++ff=dos <CR> :setlocal ff=unix <CR> :w
-map <F9> :TlistToggle <CR>
-imap <F9> <Esc> :TlistToggle <CR> i
-vmap <F9> <Esc> :TlistToggle <CR> v
-
-" show linenumbers
-set smarttab
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set backspace=indent,eol,start
-set autoindent
-
-" Paste functions
-imap <S-Insert> <ESC> "+gP i
-map <leader>p :set paste <CR> <ESC> "+gP <ESC> :set nopaste
-nmap <S-Insert> <ESC> "+gP <CR> i
-vmap <C-Insert> "+y
-vmap <C-p> "+y
-vmap <C-Delete> "+x
-nmap <C-Delete> "+yy <CR> dd
-" autosave when changing buffer
-imap <S-END> <ESC> V <END>
-set autowrite
-set nobackup
-
-set hlsearch
-set incsearch
-set sm
-syntax on
-
-
-set ruler
-set showmode
-set history=1000
-
-set ls=2
-set title
-
-" relative line numbers
-au InsertEnter * call RelativeNumber()
-au InsertLeave * call NoRelativeNumber()
-
-function! RelativeNumber()
-    set rnu
-endfunc
-
-function! NoRelativeNumber()
-    set norelativenumber
-    set nu
-endfunc
-
-function! NumberToggle()
-    if(&relativenumber == 1)
-        call NoRelativeNumber()
-    else
-        call RelativeNumber()
-    endif
-endfunc
-
-
-nnoremap <C-F12> :call NumberToggle() <cr>
-map <C-F12> :call NumberToggle() <cr>
-set rnu
-
-
-set ttyfast
-
-set tabpagemax=15
-nnoremap <A-PageUp> <Esc>:tabnext<CR>
-nnoremap <C-PageUp> <Esc>:bn<CR>
-nnoremap <C-t> <Esc>:tabnew<CR>
-nnoremap <A-PageDown> <Esc>:tabprevious<CR>
-nnoremap <C-PageDown> <Esc>:bp<CR>
-
-" buffer navigating
-nnoremap <C-S-Left> <Esc>:bp<CR>
-nnoremap <C-S-Right> <Esc>:bn<CR>
-
-set mouse=a
-" au Filetype python source ~/.vim/pythonvimrc
-
-" -------------------------------------------------------------
-" splits
-
-"window
-nmap <leader>sw<left>  :topleft  vnew<CR>
-nmap <leader>sw<right> :botright vnew<CR>
-nmap <leader>sw<up>    :topleft  new<CR>
-nmap <leader>sw<down>  :botright new<CR>
-map <leader>w :w <CR>
-"navigate into splits
-
-nmap <leader>s<left>   :wincmd h<CR>
-nmap <leader>s<right>  :wincmd l<CR>
-nmap <leader>s<up>     :wincmd k<CR>
-nmap <leader>s<down>   :wincmd j<CR>
-
-" xml auto indentation
-au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
-
-
-" 100 characters line
-let &colorcolumn=join(range(99,999),",")
-hi ColorColumn guibg=#2d2d2d ctermbg=235
-
-" highlight current line
-set cursorline
-
-
-" vsplit style
-set fillchars=vert:\│
-
-" no wraplines
-set nowrap
-
-
-" NERDTree
-let g:NERDTreeWinPos = "right"
-imap <F12> <ESC> :NERDTreeToggle <CR> i
-map <F12> :NERDTreeToggle <CR>
-vmap <F12> <ESC> :NERDTreeToggle <CR> v
-
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-autocmd BufWritePre * :%s/\s\+$//e
-autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
-autocmd BufWritePre *.py :%s/\s\+$//e
-
-au BufNew,BufRead *.pi                  setf python
-
-" Vundle setup!
-set nocompatible              " be iMproved
-filetype off                  " required!
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/vundle'
-
-" My bundles here:
-"
-" original repos on GitHub
-Plugin 'davidhalter/jedi-vim'
-" Plugin 'klen/python-mode'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" vim-scripts repos
-
-Plugin 'vim-scripts/L9'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/OmniCppComplete'
-
-
-Plugin 'FuzzyFinder'
-" non-GitHub repos
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tomasr/molokai.git'
-Plugin 'tpope/vim-fugitive.git'
 
-Plugin 'kien/ctrlp.vim.git'
-Plugin 'rking/ag.vim'
-Plugin 'bling/vim-airline.git'
-Plugin 'airblade/vim-gitgutter.git' " add + or - for lines added or removed when using git
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+Plugin 'taglist.vim'
+Plugin 'The-NERD-tree'
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-Plugin 'burnettk/vim-angular'
+Plugin 'davidhalter/jedi.git'
+
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
-Plugin 'andviro/flake8-vim'
+Plugin 'kien/ctrlp.vim.git'
 
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'moll/vim-node'
+Plugin 'bling/vim-airline.git'
+
+Plugin 'airblade/vim-gitgutter.git' " add + or - for lines added or removed when using git
+
+Plugin 'vim-clang'
 
 
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+colorscheme molokai
+
+syntax on
+
+
+" my vim-ishs
+
+" tabs
+"
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set smarttab
+set autoindent
+set smartindent
+set backspace=indent,eol,start
+set sm
+
+" 80 columns color
+"
+let &colorcolumn=join(range(99,999),",")
+hi ColorColumn guibg=#2d2d2d ctermbg=235
+set cursorline
+set fillchars=vert:\|
+set nowrap
+
+" numbers
+set nu
+
+
+" mouse
+
+set mouse=a
+
+
+" ctrlp
+
+let g:ctrlp_map = '<c-k>'
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db
+
+" clipboard
+
+set clipboard=unnamedplus
+map <leader>Y "+y
+map <leader>P <ESC> set paste <cr> i "+p <CR> set nopaste <CR>
+    
+
+" no folds
+"
+set foldlevelstart=99
+
+
+" search
+"
+set hlsearch
+set incsearch
+set history=1000
+" remove search highlight
+noremap <silent> <F3> :let @/="" <CR>  
+
+" ruler
+"
+set ruler
+set laststatus=2
+set title
+set showmode
+
+
+" taglists, nerdtree
+"
+
+nnoremap <silent> <F9> :TlistToggle<CR>
+nnoremap <silent> <F12> :NERDTreeToggle<CR> 
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeWinPos = "right"
+
+
+" xml auto indentation
+au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
 
 " pyflakes
@@ -215,13 +150,14 @@ let g:PyFlakeCheckers = 'pep8,mccabe'
 
 nnoremap <silent> <F8> :PyFlakeAuto <CR>
 
-filetype plugin indent on     " required!
+filetype plugin indent on " required!
+
+
+" airline
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-" unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
@@ -238,29 +174,11 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 let g:rehash256 = 1
 
+
+" wild ignore
+"
 set wildignore+=*/build/bdist*,*/build/lib.*,*/dist/*,*/docs/*,*.egg-info,*.sw*,*.egg,*.exe,*.pyc,*.pyo,*.pyd,*.dll,*.so
 
-
-" ctags c++
-" configure tags - add additional tags here or comment out not-used ones
-set tags+=~/.vim/tags/stl
-set tags+=~/.vim/tags/qt4
-" build tags of your own project with Ctrl-F12
-map <C-S-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-" OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
-colorscheme molokai
 
 
 " Jedi settings
@@ -270,4 +188,28 @@ nmap <C-LeftMouse> <LeftMouse> \g
 
 let g:jedi#use_tabs_not_buffers=0
 
-noremap <silent> <F3> :let @/="" <CR>
+
+
+" gui 
+"
+if has("gui")
+
+    set guifont=Monospace\ 12
+
+    set guioptions-=M  " remove menubar
+    set guioptions-=m  " remove menubar
+    set guioptions-=T  " remove toolbar
+    nnoremap <C> +
+endif
+
+" split separator
+set fillchars+=vert:\ 
+
+
+" change gui font size 
+"
+nnoremap <silent> <C-Kplus> :call gui_font_size#ChangeFontSize(1) <CR>
+nnoremap <silent> <C-Kminus> :call gui_font_size#ChangeFontSize(-1) <CR>
+
+nnoremap <silent> <C-ScrollWheelUp> :call gui_font_size#ChangeFontSize(0.25) <CR>
+nnoremap <silent> <C-ScrollWheelDown> :call gui_font_size#ChangeFontSize(-0.25) <CR>

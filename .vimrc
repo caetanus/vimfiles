@@ -19,11 +19,14 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 Plugin 'taglist.vim'
-Plugin 'The-NERD-tree'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-Plugin 'davidhalter/jedi.git'
+Plugin 'davidhalter/jedi-vim'
 
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -36,9 +39,16 @@ Plugin 'kien/ctrlp.vim.git'
 Plugin 'bling/vim-airline.git'
 
 Plugin 'airblade/vim-gitgutter.git' " add + or - for lines added or removed when using git
+Plugin 'junegunn/fzf.vim'
+Plugin 'fisadev/vim-isort'
+Plugin 'mindriot101/vim-yapf'
+Plugin 'dbsr/vimpy'
+Plugin 'Yggdroot/indentLine'
+Plugin 'alfredodeza/pytest.vim'
 
-Plugin 'vim-clang'
-
+" html5/css
+Plugin 'mattn/emmet-vim'
+Plugin 'hdima/python-syntax'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -108,6 +118,10 @@ map <leader>P <ESC> set paste <cr> i "+p <CR> set nopaste <CR>
 "
 set foldlevelstart=99
 
+" python syntax
+
+let python_highlight_all = 1
+
 
 " search
 "
@@ -134,10 +148,26 @@ nnoremap <silent> <F12> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeWinPos = "right"
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 
 " xml auto indentation
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+au FileType json exe ":silent 1,$!python -m json.tool  2>/dev/null"
+
+" indent guides
+let g:indentLine_char = '┆'
 
 
 " pyflakes
@@ -154,31 +184,10 @@ filetype plugin indent on " required!
 
 
 " airline
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 let g:rehash256 = 1
-
-
-" wild ignore
-"
-set wildignore+=*/build/bdist*,*/build/lib.*,*/dist/*,*/docs/*,*.egg-info,*.sw*,*.egg,*.exe,*.pyc,*.pyo,*.pyd,*.dll,*.so
-
 
 
 " Jedi settings
@@ -213,3 +222,5 @@ nnoremap <silent> <C-Kminus> :call gui_font_size#ChangeFontSize(-1) <CR>
 
 nnoremap <silent> <C-ScrollWheelUp> :call gui_font_size#ChangeFontSize(0.25) <CR>
 nnoremap <silent> <C-ScrollWheelDown> :call gui_font_size#ChangeFontSize(-0.25) <CR>
+nnoremap <silent> <C-F9> :Buffers<CR>
+colorscheme molokai

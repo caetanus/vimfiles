@@ -29,7 +29,6 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'davidhalter/jedi-vim'
 
-
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -46,6 +45,7 @@ Plugin 'mindriot101/vim-yapf'
 Plugin 'dbsr/vimpy'
 Plugin 'Yggdroot/indentLine'
 Plugin 'alfredodeza/pytest.vim'
+Plugin 'nvie/vim-flake8'
 
 " html5/css
 Plugin 'mattn/emmet-vim'
@@ -113,7 +113,9 @@ set mouse=a
 
 let g:ctrlp_map = '<c-k>'
 
+" wild ignore
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db
+set wildignore+=*/build/bdist*,*/build/lib.*,*/dist/*,*/docs/*,*.egg-info,*.sw*,*.egg,*.exe,*.pyc,*.pyo,*.pyd,*.dll,*.so,*.wpr,*.wpu,*.jpg,*.png,*/__pycache__/*
 
 set path+=**
 
@@ -239,3 +241,35 @@ nnoremap <C-l> <C-w><C-l>
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
+
+
+fu! ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
+fu! TrimSpaces() range
+  let oldhlsearch=ShowSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
+endf
+
+
+fu! TrimEndLines()
+    let save_cursor = getpos(".")
+    :silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+    :normal Go
+    :normal 0d$
+endf
+
+:autocmd BufWritePre * call TrimSpaces()
+
+au BufWritePre * call TrimEndLines()
+

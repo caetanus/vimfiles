@@ -20,6 +20,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'taglist.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 
@@ -49,6 +50,8 @@ Plugin 'alfredodeza/pytest.vim'
 " html5/css
 Plugin 'mattn/emmet-vim'
 Plugin 'hdima/python-syntax'
+" requirements
+Plugin 'raimon49/requirements.txt.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -72,6 +75,11 @@ syntax on
 
 
 " my vim-ishs
+"
+" wildmenu
+"
+set wildmenu
+set wildmode=longest:list,full
 
 " tabs
 "
@@ -107,11 +115,13 @@ let g:ctrlp_map = '<c-k>'
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db
 
+set path+=**
+
 " clipboard
 
 set clipboard=unnamedplus
 map <leader>Y "+y
-map <leader>P <ESC> set paste <cr> i "+p <CR> set nopaste <CR>
+map <leader>P <ESC> :set paste <cr> i "+p <CR><ESC> :set nopaste <CR>
     
 
 " no folds
@@ -224,3 +234,8 @@ nnoremap <silent> <C-ScrollWheelUp> :call gui_font_size#ChangeFontSize(0.25) <CR
 nnoremap <silent> <C-ScrollWheelDown> :call gui_font_size#ChangeFontSize(-0.25) <CR>
 nnoremap <silent> <C-F9> :Buffers<CR>
 colorscheme molokai
+
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
